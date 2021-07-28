@@ -1,0 +1,29 @@
+{
+  "name": "ch1ll-studios-support",
+  "version": "1.0.0-beta",
+  "description": "The official Ch1ll Studios Support bot files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingCh1ll/ch1ll-studios-support.git"
+  },
+  "author": "KingCh1ll",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/KingCh1ll/ch1ll-studios-support/issues"
+  },
+  "homepage": "https://github.com/KingCh1ll/ch1ll-studios-support#readme",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "discord": "^0.8.2",
+    "discord.js": "^13.0.0-dev.755c180.1625616230",
+    "dotenv": "^10.0.0",
+    "fs": "^0.0.1-security",
+    "moment": "^2.29.1",
+    "mongoose": "^5.13.3",
+    "path": "^0.12.7"
+  }
+}

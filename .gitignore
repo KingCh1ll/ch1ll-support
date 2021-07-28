@@ -1,0 +1,18 @@
+# Packages
+node_modules/
+.npm
+
+# Log files
+logs/
+*.log
+
+# Auth
+.env
+
+# Miscellaneous
+.vscode/
+
+# VS Code Extention Files
+.editorconfig
+.eslintrc.json
+.prettierrc.json
