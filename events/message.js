@@ -1,6 +1,7 @@
 const discord = require("discord.js")
 
 module.exports.run = async (bot, message) => {
+  console.log(message)
     if (message.partial) {
         return
     }
@@ -10,11 +11,9 @@ module.exports.run = async (bot, message) => {
     }
 
     if (message.channel.id === "763871537585061958") {
-        const SupportReply = Object.entries(bot.SupportReplys)
-
-        SupportReply.forEach((value) => {
+        Object.entries(bot.SupportReplys).forEach((value) => {
             if (value[0] === message.content) {
-                bot.functions.SendDelete(message, value[1])
+              message.reply(value[1])
             }
         })
     }

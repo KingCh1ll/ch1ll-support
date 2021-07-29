@@ -5,6 +5,7 @@
 // Librarys //
 const { Collection, Intents } = require("discord.js")
 const dotenv = require("dotenv")
+const express = require("express")
 
 const logger = require("./modules/logger")
 
@@ -29,6 +30,7 @@ process.on("unhandledRejection", (err) => {
 })
 
 const Client = require("./structures/client")
+const Web = express()
 const Ch1llBlox = new Client({
     bot: {
         intents: [
@@ -54,7 +56,7 @@ const Ch1llBlox = new Client({
         },
         presence: {
             activity: {
-                name: `Ch1ll Studio's support queue`,
+                name: `Ch1ll Studio's Support Queue`,
                 type: "WATCHING"
             },
             status: "online"
@@ -91,7 +93,14 @@ async function Start() {
     await Ch1llBlox.LoadEvents(__dirname)
 
     await Ch1llBlox.LoadModules()
+
+    Web.get('*', function (req, res) {
+      res.status(200).send({ response: 200, message: "online"});
+    })
+
+    Web.listen(3000, () => console.log("📋 | Website online."))
 }
 
 Start()
+
 Ch1llBlox.login(process.env.token)

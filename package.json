@@ -4,7 +4,7 @@
   "description": "The official Ch1ll Studios Support bot files.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,9 @@
   "homepage": "https://github.com/KingCh1ll/ch1ll-studios-support#readme",
   "dependencies": {
     "chalk": "^4.1.1",
-    "discord": "^0.8.2",
-    "discord.js": "^13.0.0-dev.755c180.1625616230",
+    "discord.js": "^12.5.3",
     "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "moment": "^2.29.1",
     "mongoose": "^5.13.3",

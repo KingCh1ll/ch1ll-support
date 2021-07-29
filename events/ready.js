@@ -7,18 +7,20 @@ exports.run = async (bot) => {
     }
 
     await global.channel.messages.fetch().then(async (messages) => {
-        var messageID = messages.last()?.id
+      var messageID = messages.last()
 
         if (!messageID){
             messageID = (await global.channel.send(bot.SupportMessage)).id
         }
 
-        if (!messages.last()?.content === bot.SupportMessage){
-            messages.last()?.edit(SupportMessage)
+        messageID = messageID.id
+
+        if (!messages.last().content === bot.SupportMessage){
+            messages.last().edit(SupportMessage)
         }
 
         setInterval(async () => {
-            await global.channel.messages?.fetch().then((FetchedMessages) => {
+            await global.channel.messages.fetch().then((FetchedMessages) => {
                 if (!FetchedMessages || FetchedMessages.length <= 0){
                     return
                 }
@@ -36,7 +38,7 @@ exports.run = async (bot) => {
         const TChannel = bot.channels.cache.get(TChannelID)
         const Messages = await TChannel.messages.fetch()
         const TicketWelcomeMessage = Messages.find((message) => message.author.id === 557628352828014614 && message.content.includes("Welcome"))
-        const UserID = TicketWelcomeMessage.mentions.users.first()?.id
+        const UserID = TicketWelcomeMessage.mentions.users.first().id
 
         if (TicketWelcomeMessage && UserID){
             bot.TicketChannels.set(UserID, TChannelID)
