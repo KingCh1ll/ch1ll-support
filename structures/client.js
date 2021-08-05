@@ -24,20 +24,12 @@ class bot extends Client {
         this.functions = require("../modules/functions")
         this.wait = util.promisify(setTimeout)
 
-        // Database
-        this.database = require("../database/handler")
-
-        this.GuildSchema = require("../database/schemas/guild")
-        this.LogSchema = require("../database/schemas/log")
-        this.MemberSchema = require("../database/schemas/member")
-        this.UserSchema = require("../database/schemas/user")
-
-        // Commands
-        this.categories = new Collection()
-        this.commands = new Collection()
-        this.aliases = new Collection()
-        this.events = new Collection()
-        this.cooldowns = new Collection()
+        // Collections
+        this.categories = new Collection();
+        this.commands = new Collection();
+        this.aliases = new Collection();
+        this.events = new Collection();
+        this.cooldowns = new Collection();
 
         return this
     }
@@ -61,30 +53,30 @@ class bot extends Client {
           })
     }
 
-    async LoadCommands(MainPath){
-        fs.readdir(path.join(`${MainPath}/commands`), (err, cats) => {
-            if (err) {
-                return this.logger(`Commands failed to load! ${err}`, "error")
+      async LoadCommands(MainPath) {
+    fs.readdir(path.join(`${MainPath}/commands`), (err, cats) => {
+      if (err) {
+        return this.logger(`Commands failed to load! ${err}`, "error");
+      }
+
+      cats.forEach(cat => {
+        this.categories.set(cat, cat);
+
+        fs.readdir(path.join(`${MainPath}/commands/${cat}`), (err, files) => {
+          files.forEach(file => {
+            if (!file.endsWith(".js")) {
+              return;
             }
 
-            cats.forEach(cat => {
-                this.categories.set(cat, cat)
+            let commandname = file.split(".")[0];
+            let FileJs = require(path.resolve(`${MainPath}/commands/${cat}/${commandname}`));
 
-                fs.readdir(path.join(`${MainPath}/commands/${cat}`), (err, files) => {
-                    files.forEach(file => {
-                        if (!file.endsWith(".js")) {
-                            return
-                        }
-
-                        let commandname = file.split(".")[0]
-                        let FileJs = require(`./commands/${cat}/${commandname}`)
-
-                        this.commands.set(commandname, FileJs)
-                    })
-                })
-            })
-        })
-    }
+            this.commands.set(commandname, FileJs);
+          });
+        });
+      });
+    });
+  }
 }
 
 module.exports = bot

@@ -18,7 +18,9 @@
   "homepage": "https://github.com/KingCh1ll/ch1ll-studios-support#readme",
   "dependencies": {
     "chalk": "^4.1.1",
+    "discord-buttons": "^4.0.0",
     "discord.js": "^12.5.3",
+    "discordeasypages": "^0.2.4",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "fs": "^0.0.1-security",

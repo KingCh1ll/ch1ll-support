@@ -4,6 +4,7 @@
 
 // Librarys //
 const { Collection, Intents } = require("discord.js")
+const disbuttons = require("discord-buttons")
 const dotenv = require("dotenv")
 const express = require("express")
 
@@ -64,33 +65,16 @@ const Ch1llBlox = new Client({
         fetchAllMembers: true
     }
 })
+
+disbuttons(Ch1llBlox)
+
 Ch1llBlox.RelatedMessages = new Collection()
 Ch1llBlox.TicketChannels = new Collection()
-
-Ch1llBlox.SupportMessage = `
-__**Ch1ll Studios Support**__
-*Type the number that describes the problem your experiencing. I'll try to assist you the best way I can. If I cannot, I'll direct you to Ch1ll Studio's Support Team.*
-
-**Ch1ll Studio**
-:one: - Example Reply.
-
-**Ch1llBlox**
-:two: - Example reply 2.
-
-**Other**
-:three: - Example reply 3.
-
-*Problem not on this list? Create a ticket! Just send, "?open". A support member will be with you within 24 hours.*
-`
-Ch1llBlox.SupportReplys = {
-    "1": "Example reply.",
-    "2": "Example reply 2.",
-    "3": "Example reply 3."
-}
 
 // Functions //
 async function Start() {
     await Ch1llBlox.LoadEvents(__dirname)
+    await Ch1llBlox.LoadCommands(__dirname)
 
     await Ch1llBlox.LoadModules()
 
