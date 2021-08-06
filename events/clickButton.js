@@ -35,6 +35,8 @@ async function GetTicketOpen(bot, member) {
     return ticket;
 }
 
+
+
 module.exports.run = async (bot, button) => {
     let member = button.clicker.member;
     let guild = button.guild;
@@ -91,6 +93,8 @@ module.exports.run = async (bot, button) => {
             }
             ]
         });
+        
+        let supportRoleId = ticketChannel.guild.roles.cache.find(role => role.id === '819275891292110858');
 
         let supportEmbed = new Discord.MessageEmbed()
             .setColor("#ffffff")
@@ -104,7 +108,7 @@ module.exports.run = async (bot, button) => {
             .setStyle("gray")
             .setID(`ticket_close_${ticketChannel.id}`);
 
-        ticketChannel.send(`Welcome, ${member.user}! Support will be with you shortly.`, {
+        ticketChannel.send(`Welcome, ${member.user}! Support will be with you shortly. || <@${supportRoleId}>`, {
             embeds: supportEmbed,
             components: new MessageActionRow().addComponent(supportButton)
         });
